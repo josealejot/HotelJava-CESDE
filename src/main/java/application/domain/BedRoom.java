@@ -4,9 +4,7 @@ import java.util.Scanner;
 
 public class BedRoom {
 
-
     Scanner sc = new Scanner(System.in);
-
 
     private int roomId;
     private String room;
@@ -14,12 +12,7 @@ public class BedRoom {
     private double price;
     private boolean state;
 
-
-    // Constructors
-
-    public BedRoom(){
-
-    }
+    public BedRoom(){}
 
     public BedRoom(int roomId, String room, String roomType, double price, boolean state) {
         this.roomId = roomId;
@@ -33,97 +26,52 @@ public class BedRoom {
         this.room = room;
     }
 
-    // Getter and Setters
+    public int getRoomId() { return roomId; }
+    public void setRoomId(int roomId) { this.roomId = roomId; }
 
+    public String getRoom() { return room; }
+    public void setRoom(String room) { this.room = room; }
 
-    public int getRoomId() {
-        return roomId;
-    }
+    public String getRoomType() { return roomType; }
+    public void setRoomType(String roomType) { this.roomType = roomType; }
 
-    public void setRoomId(int roomId) {
-        this.roomId = roomId;
-    }
+    public double getPrice() { return price; }
+    public void setPrice(double price) { this.price = price; }
 
-    public String getRoom() {
-        return room;
-    }
-
-    public void setRoom(String room) {
-        this.room = room;
-    }
-
-    public String getRoomType() {
-        return roomType;
-    }
-
-    public void setRoomType(String roomType) {
-        this.roomType = roomType;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
-    public boolean isState() {
-        return state;
-    }
-
-    public void setState(boolean state) {
-        this.state = state;
-    }
-
-    // Methods
+    public boolean isState() { return state; }
+    public void setState(boolean state) { this.state = state; }
 
     public BedRoom createBedRoom(BedRoom bedRoom){
-
-
         System.out.println("Ingrese el id de la habitación");
-        int id = sc.nextInt();
-        bedRoom.roomId = id;
+        bedRoom.setRoomId(sc.nextInt()); // Usamos el Setter
         sc.nextLine();
 
         System.out.println("Ingrese el numero de la Habitacion");
-        String room = sc.nextLine();
-        bedRoom.room = room;
+        bedRoom.setRoom(sc.nextLine()); // Usamos el Setter
 
         System.out.println("Seleccione el tipo de la habitación");
-        String roomType = sc.nextLine();
-        bedRoom.roomType = roomType;
+        bedRoom.setRoomType(sc.nextLine()); // Usamos el Setter
 
         System.out.println("Ingrese el precio por persona ");
-        double price = sc.nextDouble();
-        bedRoom.price = price;
+        bedRoom.setPrice(sc.nextDouble()); // Usamos el Setter
         sc.nextLine();
 
-        System.out.println("Seleccione el estado de la habitación");
-        boolean state = sc.nextBoolean();
-        bedRoom.state = state;
-
-
+        System.out.println("Seleccione el estado de la habitación (true/false)");
+        bedRoom.setState(sc.nextBoolean()); // Usamos el Setter
 
         return bedRoom;
     }
 
     public void getBedRoomById(int id , BedRoom bedRoom){
-
-
         if(this.roomId == id){
-            System.out.println("Id:" + bedRoom.roomId + "\n" +
-                    "Num Hab: " + bedRoom.room + "\n" +
-                    "Tipo hab: " + bedRoom.roomType + "\n" +
-                    "Precio" + bedRoom.price + "\n" +
-                    "Estado:"  + bedRoom.state + "\n");
-
-
+            // Aqui es donde se van a usar los getter para mostrar la info
+            System.out.println("Id: " + bedRoom.getRoomId() + "\n" +
+                    "Num Hab: " + bedRoom.getRoom() + "\n" +
+                    "Tipo hab: " + bedRoom.getRoomType() + "\n" +
+                    "Precio: " + bedRoom.getPrice() + "\n" +
+                    "Estado: "  + bedRoom.isState() + "\n");
         }else{
-            System.out.println("Valide el id de la habitacion que esta consultando");
+            System.out.println("Validar el id de la habitacion que esta consultando");
         }
-
     }
-
-
 }
