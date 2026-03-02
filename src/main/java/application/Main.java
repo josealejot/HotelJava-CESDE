@@ -1,33 +1,41 @@
-package application;
-
-import application.domain.BedRoom;
-import application.domain.Employee;
+import application.domain.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
-
     public static void main(String[] args) {
+        System.out.println("========================================");
+        System.out.println("   SISTEMA DE GESTIÓN HOTELERA CESDE    ");
+        System.out.println("========================================\n");
 
-        System.out.println("=== BIENVENIDO AL SISTEMA DEL HOTEL ALEJO ===");
+        // 1. Creamos un Huésped (Probando Herencia de Person)
+        Guest huesped = new Guest(101, "Alejandro", "Tangarife", "alejo@email.com", "admin123", true, "Colombia", "VIP");
 
-        // Aqui vamos a correr la prueba en el MAIN con las habitaciones, vamos a registrar
-        System.out.println("\n*** 1. Registrar Nueva Habitación ***");
-        BedRoom miHabitacion = new BedRoom(); // Aqui creamos la habitacion
-        miHabitacion.createBedRoom(miHabitacion); // Llamamos al método que activa el Scanner
+        // 2. Creamos una Habitación
+        BedRoom habitacion = new BedRoom(302, "Doble Superior", 185000.0);
 
-        System.out.println("\n*** Buscando la Habitación en el sistema ***");
-        // Llamamos al método de búsqueda colocando el mismo ID que se acaba de digitar
-        miHabitacion.getBedRoomById(miHabitacion.getRoomId(), miHabitacion);
+        // 3. Creamos una lista de servicios
+        Services desayuno = new Services(1, "Desayuno Americano", 25000.0, "Activo");
+        Services wifi = new Services(2, "WiFi Premium", 0.0, "Activo");
 
+        List<Services> listaServicios = new ArrayList<>();
+        listaServicios.add(desayuno);
+        listaServicios.add(wifi);
 
-        // *** PRUEBA 2: EL EMPLEADO (Aqui probamos que la Herencia si se da) ***
-        System.out.println("\n*** 2. Registrar Nuevo Empleado ***");
-        Employee miEmpleado = new Employee();
-        miEmpleado.setId(101); // Le asignamos un ID (Este método lo heredó de Person)
-        miEmpleado.createEmployee(miEmpleado); // Activa el Scanner para rol y salario
+        // 4. Creamos la Reserva (Probando Composición)
+        Booking miReserva = new Booking(5001, "2026-03-05", "2026-03-10", huesped, habitacion, listaServicios);
 
-        System.out.println("\n*** Buscando al Empleado en el sistema **");
-        miEmpleado.getEmployeeById(101, miEmpleado);
+        // 5. Imprimimos los resultados usando los Getters
+        System.out.println("Reserva ID: " + miReserva.getBookingId());
+        System.out.println("Huésped: " + miReserva.getGuest().getName() + " " + miReserva.getGuest().getLastName());
+        System.out.println("Habitación: " + miReserva.getBedroom().getRoomNumber() + " - " + miReserva.getBedroom().getRoomType());
+        System.out.println("Servicios contratados:");
 
-        System.out.println("\n=== Pruebas del sistema con exito ===");
+        for (Services s : miReserva.getServices()) {
+            System.out.println(" - " + s.getServiceName() + " ($" + s.getPrice() + ")");
+        }
+
+        System.out.println("\n----------------------------------------");
+        System.out.println("¡Ejecución exitosa, Alejo!");
     }
 }

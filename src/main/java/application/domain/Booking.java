@@ -4,44 +4,74 @@ import java.util.List;
 
 public class Booking {
 
-    private int id;
-    private String fecha;
-    private int cantidad;
+    private int bookingId;
+    private String checkInDate;
+    private String checkOutDate;
     private Guest guest;
     private BedRoom bedroom;
-    private List<Service> servicios;
+    private List<Services> services;
 
-    public Booking() {}
+    // Constructor vacío
+    public Booking() {
+    }
 
-    public Booking(int id, String fecha, int cantidad, Guest guest, BedRoom bedroom, List<Service> servicios) {
-        this.id = id;
-        this.fecha = fecha;
-        this.cantidad = cantidad;
+    // Constructor completo
+    public Booking(int bookingId, String checkInDate, String checkOutDate, Guest guest, BedRoom bedroom, List<Services> services) {
+        this.bookingId = bookingId;
+        this.checkInDate = checkInDate;
+        this.checkOutDate = checkOutDate;
         this.guest = guest;
         this.bedroom = bedroom;
-        this.servicios = servicios;
+        this.services = services;
     }
 
-    public int getId() { return id; }
-    public void setId(int id) { this.id = id; }
-    public String getFecha() { return fecha; }
-    public void setFecha(String fecha) { this.fecha = fecha; }
-    public int getCantidad() { return cantidad; }
-    public void setCantidad(int cantidad) { this.cantidad = cantidad; }
-    public Guest getGuest() { return guest; }
-    public void setGuest(Guest guest) { this.guest = guest; }
-    public BedRoom getBedroom() { return bedroom; }
-    public void setBedroom(BedRoom bedroom) { this.bedroom = bedroom; }
-    public List<Service> getServicios() { return servicios; }
-    public void setServicios(List<Service> servicios) { this.servicios = servicios; }
+    // --- GETTERS Y SETTERS (La carpintería completa) ---
 
-    public Booking createBooking(Booking booking) {
-        return booking;
+    public int getBookingId() {
+        return bookingId;
     }
 
-    public void getBookingById(int id, Booking booking) {
-        if(booking.getId() == id) {
-            System.out.println("Fecha de reserva: " + booking.getFecha());
-        }
+    public void setBookingId(int bookingId) {
+        this.bookingId = bookingId;
+    }
+
+    public String getCheckInDate() {
+        return checkInDate;
+    }
+
+    public void setCheckInDate(String checkInDate) {
+        this.checkInDate = checkInDate;
+    }
+
+    public String getCheckOutDate() {
+        return checkOutDate;
+    }
+
+    public void setCheckOutDate(String checkOutDate) {
+        this.checkOutDate = checkOutDate;
+    }
+
+    public Guest getGuest() {
+        return guest;
+    }
+
+    public void setGuest(Guest guest) {
+        this.guest = guest;
+    }
+
+    public BedRoom getBedroom() {
+        return bedroom;
+    }
+
+    public void setBedroom(BedRoom bedroom) {
+        this.bedroom = bedroom;
+    }
+
+    public List<Services> getServices() {
+        return services;
+    }
+
+    public void setServices(List<Services> services) {
+        this.services = services;
     }
 }
